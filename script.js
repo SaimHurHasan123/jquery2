@@ -1,4 +1,3 @@
-
 var products = [{
     "id": "100",
     "name": "iPhone 4S",
@@ -37,47 +36,73 @@ var products = [{
 }];
 $(document).ready(function () { 
  display(products);
- $(document).on("change", "#brand", function () {
-    var temp=" ";
-    var value=$("#brand").val();
-    $("#b1").html(" ");
- dispbrand(value,temp,products);
 
- $(document).on("change","#os",function(){
-     var tepm=" ";
-     var value=$("#os").val();
-     $("#b1").html(" ");
-    dispbrand(value,temp,products);
+ $("#menu2").on("change", function () {
+    var r=" ";
+    var value1=$("#menu2").val();
+    dispbrand(r,value1,products);
+ })
+
+ $("#menu1").on("change",function(){
+    var r=" ";
+     var value2=$("#menu1").val();
+    os1(r,value2,products);
 
  })
+ $("#f2").on("click",function(){
+    var r=" ";
+    var value3=$("#f1").val();
+   search(r,value3,products);
+
+})
+ $(document).on("click", "#delete",function () {
+    var r_del = $(this).parents("tr").hide();
     
-    
-});
-$(document).on("click", "#delete", function () {
-    var del = $(this).parent("td").siblings("#id").html();
-    remove(del);
   });
-
-
-
+    
 });
+
+
 function display(products){
     var html1=" ";
     for(var i=0;i<products.length;i++){
-        html1+='<tr id="id"><td>'+products[i].id+'</td>'+'<td id="name">'+products[i].name+'</td><td id="brand">'+products[i].brand+'</td><td id="os">'+products[i].os +'</td><td><input type="button" name="delete" id="#delete" value="Delete"></td></tr>';
+        html1+='<tr id="rem"><td>'+products[i].id+'</td>'+'<td id="name">'+products[i].name+'</td><td id="brand">'+products[i].brand+'</td><td id="os">'+products[i].os +'</td><td><input type="button" name="Delete" id="delete" value="Delete"></td></tr>';
     }
     $("#b1").html(html1);
 }
 
-function dispbrand(value,temp,products){
+function dispbrand(r,value1,products){
 
 for(var i=0;i<products.length; i++){
-   temp+='<tr><td>'+products[i].id+'</td>'+'<td>'+products[i].name+'</td><td>'+products[i].brand+'</td><td>'+products[i].os +'</td><td><input type="button" name="delete" id="delete" value="Delete"></td></tr>';
+    if(value1 == products[i].brand){
+   r+='<tr id="rem"><td>'+products[i].id+'</td>'+'<td>'+products[i].name+'</td><td>'+products[i].brand+'</td><td>'+products[i].os +'</td><td><input type="button" name="Delete" id="delete" value="Delete"></td></tr>';
 }
-    $("#b1").html(temp);
 }
 
-function remove(data) {
+ $("#b1").html(r);
+}
+function os1(r,value2,products){
+
+    for(var i=0;i<products.length; i++){
+        if( value2 == products[i].os){
+       r+='<tr id="rem"><td>'+products[i].id+'</td>'+'<td>'+products[i].name+'</td><td>'+products[i].brand+'</td><td>'+products[i].os +'</td><td><input type="button" name="Delete" id="delete" value="Delete"></td></tr>';
+    }
+    }
+        $("#b1").html(r);
+    }
+    function search(r,value3,products){
+        for(var i=0;i<products.length; i++){
+            if(value3 == products[i].id){
+           r+='<tr id="rem"><td>'+products[i].id+'</td>'+'<td>'+products[i].name+'</td><td>'+products[i].brand+'</td><td>'+products[i].os +'</td><td><input type="button" name="Delete" id="delete" value="Delete"></td></tr>';
+        }
+        
+    }
+
+            $("#b1").html(r);
+        }
+        
+
+/*function remove(data) {
     newArray = [];
     for (var i = 0; i < products.length; i++) {
       if (products[i].id != data) {
@@ -86,5 +111,6 @@ function remove(data) {
     }
     products = newArray;
     display(products);
-  }
+    console.log(products);
+  }*/
   
